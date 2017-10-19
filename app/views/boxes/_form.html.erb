@@ -1,4 +1,4 @@
-<%= form_with(model: box, local: true) do |form| %>
+<%= form_for(box) do |f| %>
   <% if box.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(box.errors.count, "error") %> prohibited this box from being saved:</h2>
@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label '名前' %>
-    <%= form.text_field :name, id: :box_name %>
+    <%= f.label '名前' %>
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label '識別名' %>
-    <%= form.text_field :tagname, id: :box_tagname %>
+    <%= f.label '識別名' %>
+    <%= f.text_field :tagname %>
   </div>
 
   <div class="field">
-    <%= form.label '価格' %>
-    <%= form.number_field :price, id: :box_price %>
+    <%= f.label '価格' %>
+    <%= f.number_field :price %>
   </div>
 
   <div class="field">
-    <%= form.label '内容' %>
-    <%= form.text_area :content, id: :box_content %>
+    <%= f.label '内容' %>
+    <%= f.text_area :content, {cols:40, rows:6} %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
