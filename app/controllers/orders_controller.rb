@@ -4,8 +4,14 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+     @orders = Order.where orderdate: Date.today
   end
+  
+  def yourindex
+      member_id = params[:member][:id]
+      @member = Member.find(member_id)
+      @orders= Order.where member_id: member_id
+  end  
 
   # GET /orders/1
   # GET /orders/1.json
@@ -14,7 +20,11 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    if params['member_id']
+        @order = Order.new(member:Member.find(params[:member_id]))
+    else
+        @order = Order.new
+    end
   end
 
   # GET /orders/1/edit
